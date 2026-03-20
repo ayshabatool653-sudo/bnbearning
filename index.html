@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BNB TAP PRO | Official Mining Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: linear-gradient(145deg, #111827, #0f172a);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            overflow: hidden;
+            margin: 20px;
+            border: 1px solid rgba(255,215,0,0.2);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1), transparent);
+            pointer-events: none;
+        }
+
+        /* Premium Ads Section */
+        .ads-container {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .ad-banner {
+            background: linear-gradient(145deg, rgba(255,215,0,0.05), rgba(0,0,0,0.3));
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            color: #888;
+            font-size: 12px;
+            border: 1px solid rgba(255,215,0,0.2);
+            backdrop-filter: blur(5px);
+            gap: 10px;
+        }
+
+        .ad-banner span:first-child {
+            color: #ffd700;
+        }
+
+        /* Premium Header */
+        .header {
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .bnb-badge {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #ffd700;
+            border: 1px solid rgba(255,215,0,0.3);
+            font-size: 12px;
+        }
+
+        /* Premium Balance Card */
+        .balance-card {
+            background: linear-gradient(145deg, rgba(255,215,0,0.1), rgba(0,0,0,0.4));
+            margin: 20px;
+            padding: 25px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .balance-label {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .balance-amount {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .bnb-symbol {
+            font-size: 28px;
+            color: #ffd700;
+            margin-left: 5px;
+            -webkit-text-fill-color: #ffd700;
+        }
+
+        .balance-usd {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* Tap Button */
+        .tap-section {
+            padding: 10px 20px 20px;
+            text-align: center;
+        }
+
+        .tap-button {
+            width: 240px;
+            height: 240px;
+            background: linear-gradient(145deg, #ffd700, #ffb347);
+            border: none;
+            border-radius: 120px;
+            color: #1e293b;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 5px rgba(255,215,0,0.3), inset 0 2px 5px rgba(255,255,255,0.5);
+            transition: all 0.1s;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tap-button:active {
+            transform: scale(0.95);
+        }
+
+        .bnb-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .tap-info {
+            margin-top: 15px;
+        }
+
+        .tap-info small {
+            background: rgba(0,0,0,0.4);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: #ffd700;
+            border: 1px solid rgba(255,215,0,0.2);
+            font-size: 12px;
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 20px;
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Withdrawal Page */
+        .withdraw-form {
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,215,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .withdraw-form h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,215,0,0.2);
+            border-radius: 15px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .withdraw-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border: none;
+            border-radius: 15px;
+            color: #1e293b;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .withdraw-note {
+            margin-top: 15px;
+            color: #64748b;
+            font-size: 11px;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        /* Binance Link */
+        .binance-link {
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .binance-link h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .binance-link p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+
+        .link-btn {
+            background: transparent;
+            color: #ffd700;
+            padding: 12px 30px;
+            border: 2px solid #ffd700;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .link-btn:hover {
+            background: #ffd700;
+            color: #1e293b;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 10px;
+            background: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #64748b;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            color: #ffd700;
+            background: rgba(255,215,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+        }
+
+        /* Profile Section */
+        .profile-info {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 25px;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border-radius: 45px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e293b;
+            font-size: 45px;
+        }
+
+        .username {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .user-email {
+            color: #94a3b8;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        /* Login Page */
+        .login-page {
+            min-height: 600px;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+        }
+
+        .login-header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .login-logo {
+            font-size: 70px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+
+        .login-header h2 {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 32px;
+        }
+
+        .login-header p {
+            color: #94a3b8;
+        }
+
+        .login-form-container {
+            background: rgba(0,0,0,0.4);
+            margin: 20px;
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .login-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #94a3b8;
+        }
+
+        .login-tab.active {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1e293b;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border: none;
+            border-radius: 15px;
+            color: #1e293b;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .login-footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,215,0,0.2);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* Transaction History */
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+
+        .tx-type {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .tx-amount {
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .tx-date {
+            color: #64748b;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="container login-page" style="display: block;">
+        <div class="login-header">
+            <div class="login-logo">🪙</div>
+            <h2>BNB TAP PRO</h2>
+            <p>Login to start mining</p>
+        </div>
+
+        <div class="login-form-container">
+            <div class="login-tabs">
+                <div class="login-tab active" onclick="showLoginForm()" id="loginTabBtn">Login</div>
+                <div class="login-tab" onclick="showSignupForm()" id="signupTabBtn">Sign Up</div>
+            </div>
+
+            <div id="loginFormPage">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmailPage" placeholder="hello@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPasswordPage" placeholder="••••••••">
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button class="login-btn" onclick="loginFromPage()">LOGIN TO ACCOUNT</button>
+            </div>
+
+            <div id="signupFormPage" style="display: none;">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="signupUsernamePage" placeholder="cryptoking">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="signupEmailPage" placeholder="hello@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPasswordPage" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="••••••••">
+                </div>
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="termsCheckbox">
+                    <label>I agree to Terms & Conditions</label>
+                </div>
+                <button class="login-btn" onclick="signupFromPage()">CREATE ACCOUNT</button>
+            </div>
+
+            <div class="login-footer">
+                By continuing, you agree to our<br>
+                <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="container" style="display: none;">
+        <div class="ads-container">
+            <div class="ad-banner">
+                <span>⚡</span>
+                AdSpace • 320x50 • Google AdSense Ready
+                <span>⚡</span>
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1>BNB TAP PRO</h1>
+            <p>Official Mining Platform</p>
+            <div class="bnb-badge">
+                <span>⛏️</span>
+                0.00000001 BNB Per Tap
+            </div>
+        </div>
+        
+        <div class="balance-card">
+            <div class="balance-label">TOTAL BALANCE</div>
+            <div class="balance-amount">
+                <span id="totalBalance">0.00000000</span>
+                <span class="bnb-symbol">BNB</span>
+            </div>
+            <div class="balance-usd">≈ $0.00 USD</div>
+        </div>
+        
+        <div id="tapPage" class="page-content active">
+            <div class="tap-section">
+                <button class="tap-button" onclick="handleTap()">
+                    <span class="bnb-icon">⛏️</span>
+                    <span>TAP TO MINE</span>
+                    <small style="font-size: 11px; margin-top: 8px; color: #1e293b;">0.00000001 BNB</small>
+                </button>
+                <div class="tap-info">
+                    <small>⚡ 1 Tap = 0.00000001 BNB • Daily Bonus Active</small>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTaps">0</div>
+                        <div class="stat-label">Total Taps</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="dailyTaps">0/10000</div>
+                        <div class="stat-label">Daily Limit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="balancePage" class="page-content">
+            <h3 style="color: #ffd700; margin-bottom: 20px;">📊 Transaction History</h3>
+            <div id="transactionList">
+                <div style="text-align: center; color: #64748b; padding: 30px;">
+                    No transactions yet. Start mining!
+                </div>
+            </div>
+        </div>
+        
+        <div id="withdrawPage" class="page-content">
+            <div class="withdraw-form">
+                <h3>💸 Withdraw BNB</h3>
+                <div class="form-group">
+                    <label>BNB Wallet Address</label>
+                    <input type="text" id="bnbAddress" placeholder="0x...">
+                </div>
+                <div class="form-group">
+                    <label>Amount (Min. 0.01 BNB)</label>
+                    <input type="number" id="withdrawAmount" step="0.01" min="0.01">
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(0.01)">MIN</button>
+                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(0.05)">HALF</button>
+                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(userBalance)">MAX</button>
+                </div>
+                <button class="withdraw-btn" onclick="withdrawBNB()">WITHDRAW NOW</button>
+                <div class="withdraw-note">
+                    ⚡ Minimum withdrawal: 0.01 BNB • Network fee: 0.0001 BNB
+                </div>
+            </div>
+        </div>
+        
+        <div id="binancePage" class="page-content">
+            <div class="binance-link">
+                <div style="font-size: 60px; margin-bottom: 20px;">🔗</div>
+                <h3>Connect Binance</h3>
+                <p>Link your Binance account for instant withdrawals and exclusive rewards.</p>
+                <button class="link-btn" onclick="connectBinance()">⚡ LINK BINANCE</button>
+                <div style="margin-top: 20px; color: #475569; font-size: 11px;">🔒 256-bit SSL Encrypted</div>
+            </div>
+        </div>
+        
+        <div id="profilePage" class="page-content">
+            <div id="profileInfo">
+                <div class="profile-info">
+                    <div class="avatar">👑</div>
+                    <div class="username" id="displayUsername">CryptoKing</div>
+                    <div class="user-email" id="displayEmail">king@crypto.com</div>
+                    
+                    <div class="stats-grid" style="margin-top: 20px;">
+                        <div class="stat-card">
+                            <div class="stat-value" id="profileTaps">0</div>
+                            <div class="stat-label">Total Taps</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="profileEarned">0.00000000</div>
+                            <div class="stat-label">BNB Earned</div>
+                        </div>
+                    </div>
+                    
+                    <button class="link-btn" style="margin-top: 20px; width: 100%;" onclick="logout()">LOGOUT</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchPage('tap')">
+                <div class="nav-icon">⛏️</div>
+                <div class="nav-label">MINE</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('balance')">
+                <div class="nav-icon">📊</div>
+                <div class="nav-label">BALANCE</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('withdraw')">
+                <div class="nav-icon">💸</div>
+                <div class="nav-label">WITHDRAW</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('binance')">
+                <div class="nav-icon">🔗</div>
+                <div class="nav-label">BINANCE</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('profile')">
+                <div class="nav-icon">👑</div>
+                <div class="nav-label">PROFILE</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // User data
+        let currentUser = null;
+        let userBalance = 0.0;
+        let isLoggedIn = false;
+        let totalTaps = 0;
+        let dailyTaps = 0;
+        let transactions = [];
+        
+        const TAP_VALUE = 0.00000001;
+        const DAILY_LIMIT = 10000;
+        
+        // Save user data to localStorage
+        function saveUserData() {
+            if (currentUser && isLoggedIn) {
+                const userKey = `bnb_tap_user_${currentUser.email}`;
+                const userData = {
+                    email: currentUser.email,
+                    username: currentUser.username,
+                    balance: userBalance,
+                    totalTaps: totalTaps,
+                    dailyTaps: dailyTaps,
+                    transactions: transactions,
+                    lastLoginDate: new Date().toISOString()
+                };
+                localStorage.setItem(userKey, JSON.stringify(userData));
+                
+                // Also save current session
+                localStorage.setItem('bnb_tap_current_user', currentUser.email);
+            }
+        }
+        
+        // Load user data from localStorage
+        function loadUserData(email) {
+            const userKey = `bnb_tap_user_${email}`;
+            const savedData = localStorage.getItem(userKey);
+            
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                userBalance = data.balance || 0;
+                totalTaps = data.totalTaps || 0;
+                dailyTaps = data.dailyTaps || 0;
+                transactions = data.transactions || [];
+                
+                // Check daily reset
+                const lastDate = new Date(data.lastLoginDate);
+                const today = new Date();
+                if (lastDate.toDateString() !== today.toDateString()) {
+                    dailyTaps = 0;
+                }
+                
+                return true;
+            }
+            return false;
+        }
+        
+        // Check if user already logged in
+        function checkAutoLogin() {
+            const savedUserEmail = localStorage.getItem('bnb_tap_current_user');
+            if (savedUserEmail) {
+                const userKey = `bnb_tap_user_${savedUserEmail}`;
+                const savedData = localStorage.getItem(userKey);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    currentUser = {
+                        username: data.username,
+                        email: data.email
+                    };
+                    loadUserData(data.email);
+                    isLoggedIn = true;
+                    
+                    // Show main app
+                    document.getElementById('loginPage').style.display = 'none';
+                    document.getElementById('mainApp').style.display = 'block';
+                    
+                    // Update displays
+                    updateAllDisplays();
+                    alert('🎉 Welcome back, ' + currentUser.username + '!');
+                }
+            }
+        }
+        
+        // Update all displays
+        function updateAllDisplays() {
+            document.getElementById('totalBalance').textContent = userBalance.toFixed(8);
+            document.getElementById('totalTaps').textContent = totalTaps;
+            document.getElementById('dailyTaps').textContent = dailyTaps + '/' + DAILY_LIMIT;
+            document.getElementById('displayUsername').textContent = currentUser?.username || 'User';
+            document.getElementById('displayEmail').textContent = currentUser?.email || 'user@email.com';
+            
+            const usdValue = (userBalance * 300).toFixed(2);
+            document.querySelector('.balance-usd').textContent = '≈ $' + usdValue + ' USD';
+            
+            updateTransactionList();
+            updateProfileStats();
+        }
+        
+        function showLoginForm() {
+            document.getElementById('loginFormPage').style.display = 'block';
+            document.getElementById('signupFormPage').style.display = 'none';
+            document.getElementById('loginTabBtn').classList.add('active');
+            document.getElementById('signupTabBtn').classList.remove('active');
+        }
+        
+        function showSignupForm() {
+            document.getElementById('loginFormPage').style.display = 'none';
+            document.getElementById('signupFormPage').style.display = 'block';
+            document.getElementById('loginTabBtn').classList.remove('active');
+            document.getElementById('signupTabBtn').classList.add('active');
+        }
+        
+        function loginFromPage() {
+            const email = document.getElementById('loginEmailPage').value;
+            const password = document.getElementById('loginPasswordPage').value;
+            
+            if (!email || !password) {
+                alert('Please fill all fields');
+                return;
+            }
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+            
+            // Check if user exists
+            const userKey = `bnb_tap_user_${email}`;
+            const savedData = localStorage.getItem(userKey);
+            
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                // For demo, we're not storing password, so just check if user exists
+                currentUser = {
+                    username: data.username,
+                    email: email
+                };
+                loadUserData(email);
+            } else {
+                // New user
+                currentUser = {
+                    username: email.split('@')[0],
+                    email: email
+                };
+                userBalance = 0;
+                totalTaps = 0;
+                dailyTaps = 0;
+                transactions = [];
+            }
+            
+            isLoggedIn = true;
+            
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            
+            updateAllDisplays();
+            saveUserData();
+            
+            alert('🎉 Welcome back, ' + currentUser.username + '!');
+        }
+        
+        function signupFromPage() {
+            const username = document.getElementById('signupUsernamePage').value;
+            const email = document.getElementById('signupEmailPage').value;
+            const password = document.getElementById('signupPasswordPage').value;
+            const confirmPass = document.getElementById('signupConfirmPassword').value;
+            const terms = document.getElementById('termsCheckbox').checked;
+            
+            if (!username || !email || !password || !confirmPass) {
+                alert('Please fill all fields');
+                return;
+            }
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+            if (password !== confirmPass) {
+                alert('Passwords do not match');
+                return;
+            }
+            if (!terms) {
+                alert('Please agree to Terms & Conditions');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Check if email already exists
+            const userKey = `bnb_tap_user_${email}`;
+            if (localStorage.getItem(userKey)) {
+                alert('Email already registered! Please login.');
+                return;
+            }
+            
+            currentUser = {
+                username: username,
+                email: email
+            };
+            userBalance = 0;
+            totalTaps = 0;
+            dailyTaps = 0;
+            transactions = [];
+            isLoggedIn = true;
+            
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            
+            updateAllDisplays();
+            saveUserData();
+            
+            alert('🎉 Account created successfully! Welcome ' + username + '!');
+        }
+        
+        function logout() {
+            saveUserData(); // Save before logout
+            currentUser = null;
+            isLoggedIn = false;
+            
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('mainApp').style.display = 'none';
+            
+            // Clear forms
+            document.getElementById('loginEmailPage').value = '';
+            document.getElementById('loginPasswordPage').value = '';
+            document.getElementById('signupUsernamePage').value = '';
+            document.getElementById('signupEmailPage').value = '';
+            document.getElementById('signupPasswordPage').value = '';
+            document.getElementById('signupConfirmPassword').value = '';
+            document.getElementById('termsCheckbox').checked = false;
+            
+            localStorage.removeItem('bnb_tap_current_user');
+        }
+        
+        function switchPage(page) {
+            document.getElementById('tapPage').classList.remove('active');
+            document.getElementById('balancePage').classList.remove('active');
+            document.getElementById('withdrawPage').classList.remove('active');
+            document.getElementById('binancePage').classList.remove('active');
+            document.getElementById('profilePage').classList.remove('active');
+            document.getElementById(page + 'Page').classList.add('active');
+            
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        
+        function handleTap() {
+            if (!isLoggedIn) return;
+            
+            if (dailyTaps >= DAILY_LIMIT) {
+                alert('Daily limit reached! Come back tomorrow.');
+                return;
+            }
+            
+            userBalance += TAP_VALUE;
+            totalTaps++;
+            dailyTaps++;
+            
+            updateAllDisplays();
+            addTransaction('Mining Reward', TAP_VALUE, 'credit');
+            saveUserData(); // Save after each tap
+            
+            const button = event.currentTarget;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => { button.style.transform = 'scale(1)'; }, 100);
+            
+            showFloatingText('+' + TAP_VALUE.toFixed(8) + ' BNB');
+        }
+        
+        function showFloatingText(text) {
+            const floating = document.createElement('div');
+            floating.style.position = 'absolute';
+            floating.style.color = '#ffd700';
+            floating.style.fontSize = '18px';
+            floating.style.fontWeight = 'bold';
+            floating.style.pointerEvents = 'none';
+            floating.style.zIndex = '1000';
+            floating.style.animation = 'fadeOut 1s';
+            floating.textContent = text;
+            
+            const x = event.clientX;
+            const y = event.clientY;
+            floating.style.left = x + 'px';
+            floating.style.top = y + 'px';
+            document.body.appendChild(floating);
+            
+            setTimeout(() => floating.remove(), 1000);
+        }
+        
+        function addTransaction(type, amount, direction) {
+            transactions.unshift({
+                type: type,
+                amount: amount,
+                direction: direction,
+                date: new Date().toLocaleString()
+            });
+            if (transactions.length > 50) transactions.pop();
+            updateTransactionList();
+            saveUserData();
+        }
+        
+        function updateTransactionList() {
+            const list = document.getElementById('transactionList');
+            if (transactions.length > 0) {
+                let html = '';
+                transactions.slice(0, 10).forEach(tx => {
+                    html += `<div class="transaction-item">
+                        <div><div class="tx-type">${tx.direction === 'credit' ? '➕' : '➖'} ${tx.type}</div>
+                        <div class="tx-date">${tx.date}</div></div>
+                        <div class="tx-amount">${tx.direction === 'credit' ? '+' : '-'}${tx.amount.toFixed(8)} BNB</div>
+                    </div>`;
+                });
+                list.innerHTML = html;
+            }
+        }
+        
+        function setAmount(amount) {
+            document.getElementById('withdrawAmount').value = amount === userBalance ? amount.toFixed(8) : amount;
+        }
+        
+        function withdrawBNB() {
+            if (!isLoggedIn) return;
+            
+            const address = document.getElementById('bnbAddress').value;
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            
+            if (!address || !address.startsWith('0x') || address.length !== 42) {
+                alert('Please enter a valid BNB address (0x...)');
+                return;
+            }
+            if (!amount || amount < 0.01) {
+                alert('Minimum withdrawal amount is 0.01 BNB');
+                return;
+            }
+            if (amount > userBalance) {
+                alert('Insufficient balance');
+                return;
+            }
+            
+            userBalance -= amount;
+            updateAllDisplays();
+            addTransaction('Withdrawal', amount, 'debit');
+            saveUserData();
+            
+            alert(`✅ Withdrawal of ${amount} BNB initiated!\nAddress: ${address}`);
+            document.getElementById('bnbAddress').value = '';
+            document.getElementById('withdrawAmount').value = '';
+        }
+        
+        function connectBinance() {
+            if (!isLoggedIn) return;
+            alert('🔗 Binance connection feature coming soon!');
+        }
+        
+        function updateProfileStats() {
+            document.getElementById('profileTaps').textContent = totalTaps;
+            document.getElementById('profileEarned').textContent = userBalance.toFixed(8);
+        }
+        
+        // Check for daily reset
+        setInterval(() => {
+            if (isLoggedIn && currentUser) {
+                const now = new Date();
+                if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+                    dailyTaps = 0;
+                    updateAllDisplays();
+                    saveUserData();
+                }
+            }
+        }, 1000);
+        
+        // Check auto login on page load
+        checkAutoLogin();
+        
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fadeOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

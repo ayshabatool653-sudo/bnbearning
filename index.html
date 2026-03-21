@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BNB TAP PRO | Official Mining Platform</title>
+    <title>BNB TAP PRO | Matrix Mining Protocol</title>
     <style>
         * {
             margin: 0;
@@ -12,139 +12,287 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            font-family: 'Courier New', 'Fira Code', 'Monaco', monospace;
+            background: #000000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #ffffff;
+            color: #00ff00;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .matrix-bg canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .container {
             width: 100%;
-            max-width: 400px;
-            background: linear-gradient(145deg, #111827, #0f172a);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            max-width: 420px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
             overflow: hidden;
             margin: 20px;
-            border: 1px solid rgba(255,215,0,0.2);
+            border: 1px solid #00ff00;
             position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.1), transparent);
-            pointer-events: none;
+        /* Login Page Matrix */
+        .login-page {
+            min-height: 600px;
         }
 
-        /* Premium Ads Section */
-        .ads-container {
-            background: rgba(0,0,0,0.3);
+        .login-header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .login-logo {
+            font-size: 70px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px #00ff00);
+        }
+
+        .login-header h2 {
+            color: #00ff00;
+            font-size: 28px;
+            font-family: monospace;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .login-header p {
+            color: #00cc66;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .login-form-container {
+            background: rgba(0, 0, 0, 0.6);
+            margin: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+        }
+
+        .login-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 12px;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #008800;
+            font-family: monospace;
+            transition: all 0.3s;
+        }
+
+        .login-tab.active {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #00cc66;
+            font-size: 11px;
+            font-family: monospace;
+        }
+
+        .form-group input {
+            width: 100%;
             padding: 12px;
-            border-bottom: 1px solid rgba(255,215,0,0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #00ff00;
+            font-family: monospace;
         }
 
-        .ad-banner {
-            background: linear-gradient(145deg, rgba(255,215,0,0.05), rgba(0,0,0,0.3));
-            height: 70px;
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            color: #00ff00;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: monospace;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #008800;
+            font-size: 10px;
+            font-family: monospace;
+        }
+
+        .login-footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .forgot-password a {
+            color: #008800;
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+        .terms-checkbox {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            color: #888;
-            font-size: 12px;
-            border: 1px solid rgba(255,215,0,0.2);
-            backdrop-filter: blur(5px);
             gap: 10px;
+            margin: 15px 0;
+            color: #008800;
+            font-size: 11px;
+            font-family: monospace;
         }
 
-        .ad-banner span:first-child {
-            color: #ffd700;
+        .terms-checkbox input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
 
-        /* Premium Header */
+        /* Main App Matrix Style */
         .header {
-            padding: 30px 20px 20px;
+            padding: 25px 20px;
             text-align: center;
+            border-bottom: 1px solid #00ff00;
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .header h1 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: 28px;
+            color: #00ff00;
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #00ff00; }
+            95% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+            96% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
         }
 
         .header p {
-            color: #94a3b8;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .bnb-badge {
-            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
-            padding: 8px 20px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 15px;
-            font-weight: 600;
-            color: #ffd700;
-            border: 1px solid rgba(255,215,0,0.3);
-            font-size: 12px;
-        }
-
-        /* Premium Balance Card */
-        .balance-card {
-            background: linear-gradient(145deg, rgba(255,215,0,0.1), rgba(0,0,0,0.4));
-            margin: 20px;
-            padding: 25px;
-            border-radius: 30px;
-            text-align: center;
-            border: 1px solid rgba(255,215,0,0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .balance-label {
-            color: #94a3b8;
-            font-size: 12px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
+            color: #00cc00;
+            font-size: 11px;
             letter-spacing: 2px;
         }
 
+        .bnb-badge {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            font-size: 11px;
+            font-family: monospace;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            background: rgba(0, 0, 0, 0.7);
+            margin: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .balance-label {
+            color: #00cc66;
+            font-size: 11px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: monospace;
+        }
+
         .balance-amount {
-            font-size: 52px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+            font-weight: bold;
+            color: #00ff00;
             line-height: 1.2;
+            text-shadow: 0 0 15px #00ff00;
+            font-family: monospace;
         }
 
         .bnb-symbol {
-            font-size: 28px;
-            color: #ffd700;
+            font-size: 24px;
+            color: #00ff00;
             margin-left: 5px;
-            -webkit-text-fill-color: #ffd700;
         }
 
         .balance-usd {
-            color: #64748b;
-            font-size: 12px;
+            color: #008800;
+            font-size: 11px;
             margin-top: 8px;
+            font-family: monospace;
         }
 
         /* Tap Button */
@@ -154,46 +302,48 @@
         }
 
         .tap-button {
-            width: 240px;
-            height: 240px;
-            background: linear-gradient(145deg, #ffd700, #ffb347);
-            border: none;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at 30% 30%, #003300, #000000);
+            border: 2px solid #00ff00;
             border-radius: 120px;
-            color: #1e293b;
-            font-size: 24px;
+            color: #00ff00;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 5px rgba(255,215,0,0.3), inset 0 2px 5px rgba(255,255,255,0.5);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.2);
             transition: all 0.1s;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            font-family: monospace;
         }
 
         .tap-button:active {
             transform: scale(0.95);
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.6);
         }
 
         .bnb-icon {
-            font-size: 55px;
-            margin-bottom: 10px;
+            font-size: 50px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 10px #00ff00);
         }
 
         .tap-info {
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .tap-info small {
-            background: rgba(0,0,0,0.4);
-            padding: 8px 20px;
-            border-radius: 30px;
-            color: #ffd700;
-            border: 1px solid rgba(255,215,0,0.2);
-            font-size: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 6px 15px;
+            border-radius: 20px;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            font-size: 11px;
+            font-family: monospace;
         }
 
         /* Page Content */
@@ -214,507 +364,395 @@
 
         /* Withdrawal Page */
         .withdraw-form {
-            background: rgba(0,0,0,0.3);
-            padding: 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,215,0,0.2);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #00ff00;
         }
 
         .withdraw-form h3 {
-            color: #ffd700;
+            color: #00ff00;
             margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #94a3b8;
-            font-size: 12px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            background: rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,215,0,0.2);
-            border-radius: 15px;
-            font-size: 14px;
-            color: white;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #ffd700;
+            font-size: 18px;
+            font-family: monospace;
         }
 
         .withdraw-btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border: none;
-            border-radius: 15px;
-            color: #1e293b;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            color: #00ff00;
             font-weight: bold;
             cursor: pointer;
+            font-family: monospace;
+            transition: all 0.3s;
+        }
+
+        .withdraw-btn:hover {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 20px #00ff00;
         }
 
         .withdraw-note {
-            margin-top: 15px;
-            color: #64748b;
-            font-size: 11px;
+            margin-top: 12px;
+            color: #008800;
+            font-size: 10px;
             text-align: center;
-            padding: 10px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
+            font-family: monospace;
         }
 
         /* Binance Link */
         .binance-link {
-            background: rgba(0,0,0,0.3);
-            padding: 30px;
-            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255,215,0,0.2);
+            border: 1px solid #00ff00;
         }
 
         .binance-link h3 {
-            color: #ffd700;
-            margin-bottom: 15px;
+            color: #00ff00;
+            margin-bottom: 12px;
+            font-family: monospace;
         }
 
         .binance-link p {
-            color: #94a3b8;
-            margin-bottom: 25px;
-            font-size: 13px;
+            color: #00cc66;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-family: monospace;
         }
 
         .link-btn {
             background: transparent;
-            color: #ffd700;
-            padding: 12px 30px;
-            border: 2px solid #ffd700;
-            border-radius: 30px;
+            color: #00ff00;
+            padding: 10px 25px;
+            border: 2px solid #00ff00;
+            border-radius: 20px;
             font-weight: bold;
             cursor: pointer;
+            font-family: monospace;
             transition: all 0.3s;
         }
 
         .link-btn:hover {
-            background: #ffd700;
-            color: #1e293b;
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
         }
 
         /* Bottom Navigation */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
-            padding: 12px 10px;
-            background: rgba(0,0,0,0.5);
-            border-top: 1px solid rgba(255,215,0,0.1);
+            padding: 10px 8px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid #00ff00;
         }
 
         .nav-item {
             text-align: center;
-            color: #64748b;
+            color: #008800;
             cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 6px 8px;
+            border-radius: 10px;
             transition: all 0.3s;
             flex: 1;
+            font-family: monospace;
         }
 
         .nav-item.active {
-            color: #ffd700;
-            background: rgba(255,215,0,0.1);
-            transform: translateY(-2px);
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            text-shadow: 0 0 5px #00ff00;
         }
 
         .nav-icon {
-            font-size: 22px;
-            margin-bottom: 4px;
+            font-size: 20px;
+            margin-bottom: 2px;
         }
 
         .nav-label {
-            font-size: 10px;
+            font-size: 9px;
         }
 
         /* Profile Section */
         .profile-info {
             text-align: center;
-            padding: 25px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 25px;
-            border: 1px solid rgba(255,215,0,0.2);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            border: 1px solid #00ff00;
         }
 
         .avatar {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border-radius: 45px;
-            margin: 0 auto 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #003300, #000000);
+            border-radius: 40px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1e293b;
-            font-size: 45px;
+            color: #00ff00;
+            font-size: 40px;
+            border: 2px solid #00ff00;
         }
 
         .username {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 5px;
-            color: white;
+            margin-bottom: 4px;
+            color: #00ff00;
+            font-family: monospace;
         }
 
         .user-email {
-            color: #94a3b8;
-            margin-bottom: 20px;
-            font-size: 13px;
-        }
-
-        /* Login Page */
-        .login-page {
-            min-height: 600px;
-            background: linear-gradient(135deg, #0f172a, #1e1b4b);
-        }
-
-        .login-header {
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        .login-logo {
-            font-size: 70px;
+            color: #008800;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 20px #ffd700);
-        }
-
-        .login-header h2 {
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 32px;
-        }
-
-        .login-header p {
-            color: #94a3b8;
-        }
-
-        .login-form-container {
-            background: rgba(0,0,0,0.4);
-            margin: 20px;
-            padding: 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .login-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            background: rgba(0,0,0,0.3);
-            padding: 5px;
-            border-radius: 15px;
-        }
-
-        .login-tab {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 12px;
-            font-weight: 600;
-            color: #94a3b8;
-        }
-
-        .login-tab.active {
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            color: #1e293b;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border: none;
-            border-radius: 15px;
-            color: #1e293b;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .login-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #64748b;
-            font-size: 12px;
-        }
-
-        .login-footer a {
-            color: #ffd700;
-            text-decoration: none;
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        .forgot-password a {
-            color: #64748b;
-            text-decoration: none;
             font-size: 11px;
-        }
-
-        .terms-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
-            color: #94a3b8;
-            font-size: 12px;
+            font-family: monospace;
         }
 
         /* Stats Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .stat-card {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,215,0,0.2);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #00ff00;
             text-align: center;
         }
 
         .stat-value {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 5px;
+            color: #00ff00;
+            margin-bottom: 4px;
+            font-family: monospace;
         }
 
         .stat-label {
-            color: #94a3b8;
-            font-size: 11px;
+            color: #008800;
+            font-size: 10px;
+            font-family: monospace;
         }
 
         /* Transaction History */
         .transaction-item {
             display: flex;
             justify-content: space-between;
-            padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255,215,0,0.1);
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
         }
 
         .tx-type {
-            color: #ffd700;
+            color: #00ff00;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
+            font-family: monospace;
         }
 
         .tx-amount {
-            color: white;
+            color: #00ff00;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
+            font-family: monospace;
         }
 
         .tx-date {
-            color: #64748b;
-            font-size: 10px;
-            margin-top: 4px;
+            color: #008800;
+            font-size: 9px;
+            margin-top: 3px;
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <!-- Login Page -->
+    <!-- Matrix Rain Background -->
+    <div class="matrix-bg">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <!-- Login Page (Separate Page - Mandatory) -->
     <div id="loginPage" class="container login-page" style="display: block;">
         <div class="login-header">
-            <div class="login-logo">🪙</div>
-            <h2>BNB TAP PRO</h2>
-            <p>Login to start mining</p>
+            <div class="login-logo">⛏️</div>
+            <h2>> BNB_TAP_PRO</h2>
+            <p>> matrix_mining_protocol_v2.0</p>
         </div>
 
         <div class="login-form-container">
             <div class="login-tabs">
-                <div class="login-tab active" onclick="showLoginForm()" id="loginTabBtn">Login</div>
-                <div class="login-tab" onclick="showSignupForm()" id="signupTabBtn">Sign Up</div>
+                <div class="login-tab active" onclick="showLoginForm()" id="loginTabBtn">> LOGIN</div>
+                <div class="login-tab" onclick="showSignupForm()" id="signupTabBtn">> REGISTER</div>
             </div>
 
+            <!-- Login Form -->
             <div id="loginFormPage">
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmailPage" placeholder="hello@example.com">
+                    <label>> USERNAME</label>
+                    <input type="text" id="loginUsername" placeholder="miner_001">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPasswordPage" placeholder="••••••••">
+                    <label>> PASSWORD</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
                 </div>
                 <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
+                    <a href="#" onclick="alert('> CONTACT_SUPPORT :: admin@matrix.io'); return false;">> FORGOT_PASSWORD?</a>
                 </div>
-                <button class="login-btn" onclick="loginFromPage()">LOGIN TO ACCOUNT</button>
+                <button class="login-btn" onclick="loginFromPage()">> LOGIN_TO_SYSTEM</button>
             </div>
 
+            <!-- Signup Form (Hidden by default) -->
             <div id="signupFormPage" style="display: none;">
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="signupUsernamePage" placeholder="cryptoking">
+                    <label>> USERNAME</label>
+                    <input type="text" id="signupUsername" placeholder="miner_001">
                 </div>
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="signupEmailPage" placeholder="hello@example.com">
+                    <label>> EMAIL_ADDRESS</label>
+                    <input type="email" id="signupEmail" placeholder="miner@matrix.io">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="signupPasswordPage" placeholder="••••••••">
+                    <label>> PASSWORD</label>
+                    <input type="password" id="signupPassword" placeholder="••••••••">
                 </div>
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>> CONFIRM_PASSWORD</label>
                     <input type="password" id="signupConfirmPassword" placeholder="••••••••">
                 </div>
                 <div class="terms-checkbox">
                     <input type="checkbox" id="termsCheckbox">
-                    <label>I agree to Terms & Conditions</label>
+                    <label>> I_AGREE_TO_TERMS_&_CONDITIONS</label>
                 </div>
-                <button class="login-btn" onclick="signupFromPage()">CREATE ACCOUNT</button>
+                <button class="login-btn" onclick="signupFromPage()">> CREATE_ACCOUNT</button>
             </div>
 
             <div class="login-footer">
-                By continuing, you agree to our<br>
-                <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                > ACCESS_MATRIX_MINING_PROTOCOL<br>
+                <a href="#" onclick="alert('> TERMS_OF_SERVICE v1.0'); return false;">> TERMS_OF_SERVICE</a> :: <a href="#" onclick="alert('> PRIVACY_POLICY_ACTIVE'); return false;">> PRIVACY_POLICY</a>
             </div>
         </div>
     </div>
 
-    <!-- Main App -->
+    <!-- Main App Container (Hidden by default - Only after login) -->
     <div id="mainApp" class="container" style="display: none;">
-        <div class="ads-container">
-            <div class="ad-banner">
-                <span>⚡</span>
-                AdSpace • 320x50 • Google AdSense Ready
-                <span>⚡</span>
-            </div>
-        </div>
-        
         <div class="header">
-            <h1>BNB TAP PRO</h1>
-            <p>Official Mining Platform</p>
+            <h1>> BNB_TAP_PRO</h1>
+            <p>> matrix_mining_protocol.exe</p>
             <div class="bnb-badge">
                 <span>⛏️</span>
-                0.00000001 BNB Per Tap
+                > 0.00000001 BNB_PER_TAP
             </div>
         </div>
         
         <div class="balance-card">
-            <div class="balance-label">TOTAL BALANCE</div>
+            <div class="balance-label">> TOTAL_BALANCE</div>
             <div class="balance-amount">
                 <span id="totalBalance">0.00000000</span>
                 <span class="bnb-symbol">BNB</span>
             </div>
-            <div class="balance-usd">≈ $0.00 USD</div>
+            <div class="balance-usd">≈ $<span id="usdValue">0.00</span> USD</div>
         </div>
         
         <div id="tapPage" class="page-content active">
             <div class="tap-section">
                 <button class="tap-button" onclick="handleTap()">
                     <span class="bnb-icon">⛏️</span>
-                    <span>TAP TO MINE</span>
-                    <small style="font-size: 11px; margin-top: 8px; color: #1e293b;">0.00000001 BNB</small>
+                    <span>> EXECUTE_TAP</span>
+                    <small style="font-size: 10px; margin-top: 6px; color: #00ff00;">0.00000001 BNB</small>
                 </button>
                 <div class="tap-info">
-                    <small>⚡ 1 Tap = 0.00000001 BNB • Daily Bonus Active</small>
+                    <small>> 1_TAP = 0.00000001_BNB :: DAILY_BONUS_ACTIVE</small>
                 </div>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value" id="totalTaps">0</div>
-                        <div class="stat-label">Total Taps</div>
+                        <div class="stat-label">> TOTAL_TAPS</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" id="dailyTaps">0/10000</div>
-                        <div class="stat-label">Daily Limit</div>
+                        <div class="stat-label">> DAILY_LIMIT</div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div id="balancePage" class="page-content">
-            <h3 style="color: #ffd700; margin-bottom: 20px;">📊 Transaction History</h3>
+            <h3 style="color: #00ff00; margin-bottom: 15px; font-family: monospace;">> TRANSACTION_LOG</h3>
             <div id="transactionList">
-                <div style="text-align: center; color: #64748b; padding: 30px;">
-                    No transactions yet. Start mining!
+                <div style="text-align: center; color: #008800; padding: 30px; font-family: monospace;">
+                    > NO_TRANSACTIONS_FOUND
                 </div>
             </div>
         </div>
         
         <div id="withdrawPage" class="page-content">
             <div class="withdraw-form">
-                <h3>💸 Withdraw BNB</h3>
+                <h3>> WITHDRAW_BNB</h3>
                 <div class="form-group">
-                    <label>BNB Wallet Address</label>
+                    <label>> BNB_WALLET_ADDRESS</label>
                     <input type="text" id="bnbAddress" placeholder="0x...">
                 </div>
                 <div class="form-group">
-                    <label>Amount (Min. 0.01 BNB)</label>
+                    <label>> AMOUNT (MIN 0.01 BNB)</label>
                     <input type="number" id="withdrawAmount" step="0.01" min="0.01">
                 </div>
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(0.01)">MIN</button>
-                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(0.05)">HALF</button>
-                    <button style="flex:1; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: #ffd700; cursor: pointer;" onclick="setAmount(userBalance)">MAX</button>
+                <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+                    <button style="flex:1; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid #00ff00; border-radius: 8px; color: #00ff00; cursor: pointer; font-family: monospace;" onclick="setAmount(0.01)">MIN</button>
+                    <button style="flex:1; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid #00ff00; border-radius: 8px; color: #00ff00; cursor: pointer; font-family: monospace;" onclick="setAmount(0.05)">HALF</button>
+                    <button style="flex:1; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid #00ff00; border-radius: 8px; color: #00ff00; cursor: pointer; font-family: monospace;" onclick="setAmount(userBalance)">MAX</button>
                 </div>
-                <button class="withdraw-btn" onclick="withdrawBNB()">WITHDRAW NOW</button>
+                <button class="withdraw-btn" onclick="withdrawBNB()">> EXECUTE_WITHDRAW</button>
                 <div class="withdraw-note">
-                    ⚡ Minimum withdrawal: 0.01 BNB • Network fee: 0.0001 BNB
+                    > MIN_WITHDRAW: 0.01_BNB :: NETWORK_FEE: 0.0001_BNB
                 </div>
             </div>
         </div>
         
         <div id="binancePage" class="page-content">
             <div class="binance-link">
-                <div style="font-size: 60px; margin-bottom: 20px;">🔗</div>
-                <h3>Connect Binance</h3>
-                <p>Link your Binance account for instant withdrawals and exclusive rewards.</p>
-                <button class="link-btn" onclick="connectBinance()">⚡ LINK BINANCE</button>
-                <div style="margin-top: 20px; color: #475569; font-size: 11px;">🔒 256-bit SSL Encrypted</div>
+                <div style="font-size: 50px; margin-bottom: 15px;">🔗</div>
+                <h3>> CONNECT_BINANCE</h3>
+                <p>> LINK_YOUR_BINANCE_ACCOUNT_FOR_INSTANT_WITHDRAWALS</p>
+                <button class="link-btn" onclick="connectBinance()">> INITIATE_CONNECTION</button>
+                <div style="margin-top: 15px; color: #008800; font-size: 10px; font-family: monospace;">> 256-BIT_SSL_ENCRYPTED</div>
             </div>
         </div>
         
         <div id="profilePage" class="page-content">
             <div id="profileInfo">
                 <div class="profile-info">
-                    <div class="avatar">👑</div>
-                    <div class="username" id="displayUsername">CryptoKing</div>
-                    <div class="user-email" id="displayEmail">king@crypto.com</div>
+                    <div class="avatar">👤</div>
+                    <div class="username" id="displayUsername">MINER_001</div>
+                    <div class="user-email" id="displayEmail">miner@matrix.io</div>
                     
-                    <div class="stats-grid" style="margin-top: 20px;">
+                    <div class="stats-grid" style="margin-top: 15px;">
                         <div class="stat-card">
                             <div class="stat-value" id="profileTaps">0</div>
-                            <div class="stat-label">Total Taps</div>
+                            <div class="stat-label">> TOTAL_TAPS</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-value" id="profileEarned">0.00000000</div>
-                            <div class="stat-label">BNB Earned</div>
+                            <div class="stat-label">> BNB_EARNED</div>
                         </div>
                     </div>
                     
-                    <button class="link-btn" style="margin-top: 20px; width: 100%;" onclick="logout()">LOGOUT</button>
+                    <button class="link-btn" style="margin-top: 15px; width: 100%;" onclick="logout()">> LOGOUT</button>
                 </div>
             </div>
         </div>
@@ -722,23 +760,23 @@
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchPage('tap')">
                 <div class="nav-icon">⛏️</div>
-                <div class="nav-label">MINE</div>
+                <div class="nav-label">> MINE</div>
             </div>
             <div class="nav-item" onclick="switchPage('balance')">
                 <div class="nav-icon">📊</div>
-                <div class="nav-label">BALANCE</div>
+                <div class="nav-label">> LOGS</div>
             </div>
             <div class="nav-item" onclick="switchPage('withdraw')">
                 <div class="nav-icon">💸</div>
-                <div class="nav-label">WITHDRAW</div>
+                <div class="nav-label">> WITHDRAW</div>
             </div>
             <div class="nav-item" onclick="switchPage('binance')">
                 <div class="nav-icon">🔗</div>
-                <div class="nav-label">BINANCE</div>
+                <div class="nav-label">> BINANCE</div>
             </div>
             <div class="nav-item" onclick="switchPage('profile')">
-                <div class="nav-icon">👑</div>
-                <div class="nav-label">PROFILE</div>
+                <div class="nav-icon">👤</div>
+                <div class="nav-label">> PROFILE</div>
             </div>
         </div>
     </div>
@@ -758,10 +796,11 @@
         // Save user data to localStorage
         function saveUserData() {
             if (currentUser && isLoggedIn) {
-                const userKey = `bnb_tap_user_${currentUser.email}`;
+                const userKey = `matrix_miner_${currentUser.username}`;
                 const userData = {
-                    email: currentUser.email,
                     username: currentUser.username,
+                    email: currentUser.email,
+                    password: currentUser.password,
                     balance: userBalance,
                     totalTaps: totalTaps,
                     dailyTaps: dailyTaps,
@@ -769,15 +808,13 @@
                     lastLoginDate: new Date().toISOString()
                 };
                 localStorage.setItem(userKey, JSON.stringify(userData));
-                
-                // Also save current session
-                localStorage.setItem('bnb_tap_current_user', currentUser.email);
+                localStorage.setItem('matrix_current_user', currentUser.username);
             }
         }
         
         // Load user data from localStorage
-        function loadUserData(email) {
-            const userKey = `bnb_tap_user_${email}`;
+        function loadUserData(username) {
+            const userKey = `matrix_miner_${username}`;
             const savedData = localStorage.getItem(userKey);
             
             if (savedData) {
@@ -793,34 +830,31 @@
                 if (lastDate.toDateString() !== today.toDateString()) {
                     dailyTaps = 0;
                 }
-                
                 return true;
             }
             return false;
         }
         
-        // Check if user already logged in
+        // Check auto login
         function checkAutoLogin() {
-            const savedUserEmail = localStorage.getItem('bnb_tap_current_user');
-            if (savedUserEmail) {
-                const userKey = `bnb_tap_user_${savedUserEmail}`;
+            const savedUsername = localStorage.getItem('matrix_current_user');
+            if (savedUsername) {
+                const userKey = `matrix_miner_${savedUsername}`;
                 const savedData = localStorage.getItem(userKey);
                 if (savedData) {
                     const data = JSON.parse(savedData);
                     currentUser = {
                         username: data.username,
-                        email: data.email
+                        email: data.email,
+                        password: data.password
                     };
-                    loadUserData(data.email);
+                    loadUserData(data.username);
                     isLoggedIn = true;
                     
-                    // Show main app
                     document.getElementById('loginPage').style.display = 'none';
                     document.getElementById('mainApp').style.display = 'block';
                     
-                    // Update displays
                     updateAllDisplays();
-                    alert('🎉 Welcome back, ' + currentUser.username + '!');
                 }
             }
         }
@@ -830,11 +864,11 @@
             document.getElementById('totalBalance').textContent = userBalance.toFixed(8);
             document.getElementById('totalTaps').textContent = totalTaps;
             document.getElementById('dailyTaps').textContent = dailyTaps + '/' + DAILY_LIMIT;
-            document.getElementById('displayUsername').textContent = currentUser?.username || 'User';
-            document.getElementById('displayEmail').textContent = currentUser?.email || 'user@email.com';
+            document.getElementById('displayUsername').textContent = currentUser?.username || 'MINER';
+            document.getElementById('displayEmail').textContent = currentUser?.email || 'miner@matrix.io';
             
             const usdValue = (userBalance * 300).toFixed(2);
-            document.querySelector('.balance-usd').textContent = '≈ $' + usdValue + ' USD';
+            document.getElementById('usdValue').textContent = usdValue;
             
             updateTransactionList();
             updateProfileStats();
@@ -855,42 +889,36 @@
         }
         
         function loginFromPage() {
-            const email = document.getElementById('loginEmailPage').value;
-            const password = document.getElementById('loginPasswordPage').value;
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
             
-            if (!email || !password) {
-                alert('Please fill all fields');
-                return;
-            }
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters');
+            if (!username || !password) {
+                alert('> ERROR :: PLEASE_FILL_ALL_FIELDS');
                 return;
             }
             
-            // Check if user exists
-            const userKey = `bnb_tap_user_${email}`;
+            const userKey = `matrix_miner_${username}`;
             const savedData = localStorage.getItem(userKey);
             
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                // For demo, we're not storing password, so just check if user exists
-                currentUser = {
-                    username: data.username,
-                    email: email
-                };
-                loadUserData(email);
-            } else {
-                // New user
-                currentUser = {
-                    username: email.split('@')[0],
-                    email: email
-                };
-                userBalance = 0;
-                totalTaps = 0;
-                dailyTaps = 0;
-                transactions = [];
+            if (!savedData) {
+                alert('> ERROR :: USER_NOT_FOUND :: PLEASE_REGISTER');
+                return;
             }
             
+            const data = JSON.parse(savedData);
+            
+            // Check password
+            if (data.password !== password) {
+                alert('> ERROR :: INCORRECT_PASSWORD');
+                return;
+            }
+            
+            currentUser = {
+                username: data.username,
+                email: data.email,
+                password: data.password
+            };
+            loadUserData(username);
             isLoggedIn = true;
             
             document.getElementById('loginPage').style.display = 'none';
@@ -899,49 +927,66 @@
             updateAllDisplays();
             saveUserData();
             
-            alert('🎉 Welcome back, ' + currentUser.username + '!');
+            alert(`> ACCESS_GRANTED :: WELCOME_${currentUser.username}`);
         }
         
         function signupFromPage() {
-            const username = document.getElementById('signupUsernamePage').value;
-            const email = document.getElementById('signupEmailPage').value;
-            const password = document.getElementById('signupPasswordPage').value;
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
             const confirmPass = document.getElementById('signupConfirmPassword').value;
             const terms = document.getElementById('termsCheckbox').checked;
             
             if (!username || !email || !password || !confirmPass) {
-                alert('Please fill all fields');
+                alert('> ERROR :: PLEASE_FILL_ALL_FIELDS');
+                return;
+            }
+            if (username.length < 3) {
+                alert('> ERROR :: USERNAME_MUST_BE_3_CHARACTERS');
                 return;
             }
             if (password.length < 6) {
-                alert('Password must be at least 6 characters');
+                alert('> ERROR :: PASSWORD_MUST_BE_6_CHARACTERS');
                 return;
             }
             if (password !== confirmPass) {
-                alert('Passwords do not match');
+                alert('> ERROR :: PASSWORDS_DO_NOT_MATCH');
                 return;
             }
             if (!terms) {
-                alert('Please agree to Terms & Conditions');
+                alert('> ERROR :: PLEASE_AGREE_TO_TERMS');
                 return;
             }
             
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
+                alert('> ERROR :: INVALID_EMAIL_ADDRESS');
                 return;
             }
             
-            // Check if email already exists
-            const userKey = `bnb_tap_user_${email}`;
+            const userKey = `matrix_miner_${username}`;
             if (localStorage.getItem(userKey)) {
-                alert('Email already registered! Please login.');
+                alert('> ERROR :: USERNAME_ALREADY_EXISTS');
                 return;
             }
+            
+            const userData = {
+                username: username,
+                email: email,
+                password: password,
+                balance: 0,
+                totalTaps: 0,
+                dailyTaps: 0,
+                transactions: [],
+                createdDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem(userKey, JSON.stringify(userData));
             
             currentUser = {
                 username: username,
-                email: email
+                email: email,
+                password: password
             };
             userBalance = 0;
             totalTaps = 0;
@@ -955,11 +1000,11 @@
             updateAllDisplays();
             saveUserData();
             
-            alert('🎉 Account created successfully! Welcome ' + username + '!');
+            alert(`> ACCOUNT_CREATED :: WELCOME_${username}`);
         }
         
         function logout() {
-            saveUserData(); // Save before logout
+            saveUserData();
             currentUser = null;
             isLoggedIn = false;
             
@@ -967,15 +1012,17 @@
             document.getElementById('mainApp').style.display = 'none';
             
             // Clear forms
-            document.getElementById('loginEmailPage').value = '';
-            document.getElementById('loginPasswordPage').value = '';
-            document.getElementById('signupUsernamePage').value = '';
-            document.getElementById('signupEmailPage').value = '';
-            document.getElementById('signupPasswordPage').value = '';
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('signupUsername').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
             document.getElementById('signupConfirmPassword').value = '';
             document.getElementById('termsCheckbox').checked = false;
             
-            localStorage.removeItem('bnb_tap_current_user');
+            localStorage.removeItem('matrix_current_user');
+            
+            alert('> LOGOUT_SUCCESSFUL');
         }
         
         function switchPage(page) {
@@ -994,7 +1041,7 @@
             if (!isLoggedIn) return;
             
             if (dailyTaps >= DAILY_LIMIT) {
-                alert('Daily limit reached! Come back tomorrow.');
+                alert('> DAILY_LIMIT_REACHED :: SYSTEM_HALT');
                 return;
             }
             
@@ -1003,8 +1050,8 @@
             dailyTaps++;
             
             updateAllDisplays();
-            addTransaction('Mining Reward', TAP_VALUE, 'credit');
-            saveUserData(); // Save after each tap
+            addTransaction('MINING_REWARD', TAP_VALUE, 'credit');
+            saveUserData();
             
             const button = event.currentTarget;
             button.style.transform = 'scale(0.95)';
@@ -1016,13 +1063,15 @@
         function showFloatingText(text) {
             const floating = document.createElement('div');
             floating.style.position = 'absolute';
-            floating.style.color = '#ffd700';
-            floating.style.fontSize = '18px';
+            floating.style.color = '#00ff00';
+            floating.style.fontSize = '16px';
             floating.style.fontWeight = 'bold';
+            floating.style.fontFamily = 'monospace';
             floating.style.pointerEvents = 'none';
             floating.style.zIndex = '1000';
             floating.style.animation = 'fadeOut 1s';
-            floating.textContent = text;
+            floating.style.textShadow = '0 0 5px #00ff00';
+            floating.textContent = '> +' + text;
             
             const x = event.clientX;
             const y = event.clientY;
@@ -1051,7 +1100,7 @@
                 let html = '';
                 transactions.slice(0, 10).forEach(tx => {
                     html += `<div class="transaction-item">
-                        <div><div class="tx-type">${tx.direction === 'credit' ? '➕' : '➖'} ${tx.type}</div>
+                        <div><div class="tx-type">${tx.direction === 'credit' ? '>' : '>'} ${tx.type}</div>
                         <div class="tx-date">${tx.date}</div></div>
                         <div class="tx-amount">${tx.direction === 'credit' ? '+' : '-'}${tx.amount.toFixed(8)} BNB</div>
                     </div>`;
@@ -1071,31 +1120,31 @@
             const amount = parseFloat(document.getElementById('withdrawAmount').value);
             
             if (!address || !address.startsWith('0x') || address.length !== 42) {
-                alert('Please enter a valid BNB address (0x...)');
+                alert('> ERROR :: INVALID_BNB_ADDRESS');
                 return;
             }
             if (!amount || amount < 0.01) {
-                alert('Minimum withdrawal amount is 0.01 BNB');
+                alert('> ERROR :: MIN_WITHDRAWAL_IS_0.01_BNB');
                 return;
             }
             if (amount > userBalance) {
-                alert('Insufficient balance');
+                alert('> ERROR :: INSUFFICIENT_BALANCE');
                 return;
             }
             
             userBalance -= amount;
             updateAllDisplays();
-            addTransaction('Withdrawal', amount, 'debit');
+            addTransaction('WITHDRAWAL', amount, 'debit');
             saveUserData();
             
-            alert(`✅ Withdrawal of ${amount} BNB initiated!\nAddress: ${address}`);
+            alert(`> WITHDRAWAL_INITIATED\n> AMOUNT: ${amount} BNB\n> ADDRESS: ${address}\n> STATUS: PROCESSING`);
             document.getElementById('bnbAddress').value = '';
             document.getElementById('withdrawAmount').value = '';
         }
         
         function connectBinance() {
             if (!isLoggedIn) return;
-            alert('🔗 Binance connection feature coming soon!');
+            alert('> BINANCE_CONNECTION :: COMING_SOON');
         }
         
         function updateProfileStats() {
@@ -1115,12 +1164,56 @@
             }
         }, 1000);
         
-        // Check auto login on page load
-        checkAutoLogin();
+        // Matrix Rain Effect
+        function initMatrixRain() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+            }
+            
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0f0';
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 50);
+        }
         
-        // Add CSS animation
+        // Initialize
+        checkAutoLogin();
+        initMatrixRain();
+        
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('matrixCanvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
         const style = document.createElement('style');
-        style.textContent = `@keyframes fadeOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }`;
+        style.textContent = `@keyframes fadeOut { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-40px); } }`;
         document.head.appendChild(style);
     </script>
 </body>
